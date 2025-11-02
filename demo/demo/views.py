@@ -4,8 +4,6 @@ from django.shortcuts import render
 def home_page(request):
     return render(request, 'index.html')
 
-def productcatagory(request):
-    return render(request , 'pages/productcatagory.html')
 
 def Aboutus(request):
     return render(request, 'pages/Aboutus.html')
