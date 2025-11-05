@@ -1,39 +1,30 @@
-{%load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Collections</title>
-
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
+  <title>Marvel Comics</title>
 
   <link rel="stylesheet" href="{% static 'css/productcatagory.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- Header Navbar -->
+  <!-- Header -->
   <header>
     <div class="navbar">
-      <!-- Logo -->
       <div class="nav-logo">
         <div class="logo"></div>
       </div>
 
-      <!-- Navigation Links -->
       <div class="nav-links">
-        <a href="#" class="active">Home</a>
-        <a href="#">Product Categories</a>
-        <a href="#">About Us</a>
-        <a href="#">Return & Replacement</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Privacy Policy</a>
+        <a href="{% url 'home_page'%}">Home</a>
+        <a href="#" class="active">Marvel Comics</a>
+        <a href="{% url 'aboutus' %}">About Us</a>
+        <a href="{% url 'contactinformation'%}">Contact Us</a>
       </div>
 
-      <!-- Icons -->
       <div class="nav-icons">
         <i class="fa fa-search"></i>
         <i class="fa fa-bag-shopping"></i>
@@ -41,27 +32,23 @@
     </div>
   </header>
 
-
-
-  <!-- Collections Section -->
-  <h2 class="heading">Collections</h2>
+  <!-- Page Heading -->
+  <h2 class="heading">Marvel Comics</h2>
 
   <section class="collections">
-  {% for category in products_category %}
-    <a href="{% if category.type == 'MC' %}{% url 'marvel_comics' %}
-             {% else %}#{% endif %}" class="collection-item">
-      {% if category.image %}
-        <img src="{{ category.image.url }}" alt="{{ category.get_type_display }}">
-      {% else %}
-        <div class="image-placeholder"></div>
+  {% for comic in comics %}
+    <div class="collection-item">
+      <img src="{{ comic.image.url }}" alt="{{ comic.title }}">
+      <p>{{ comic.title }}</p>
+      <p>₹{{ comic.price }}</p>
+      {% if comic.author %}
+        <small>by {{ comic.author }}</small>
       {% endif %}
-      <p>{{ category.get_type_display }}</p> 
-    </a>
+    </div>
+  {% empty %}
+    <p>No comics available right now.</p>
   {% endfor %}
   </section>
-
-
-
 
   <!-- Footer Section -->
   <footer class="footer">
@@ -104,6 +91,5 @@
     </div>
   </footer>
 
-  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
