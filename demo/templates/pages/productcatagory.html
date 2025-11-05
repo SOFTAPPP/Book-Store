@@ -48,8 +48,7 @@
 
   <section class="collections">
   {% for category in products_category %}
-    <a href="{% if category.type == 'MC' %}{% url 'marvel_comics' %}
-             {% else %}#{% endif %}" class="collection-item">
+    <a href="" class="collection-item">
       {% if category.image %}
         <img src="{{ category.image.url }}" alt="{{ category.get_type_display }}">
       {% else %}

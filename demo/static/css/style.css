@@ -5,9 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Header section */
-
-/* Navbar layout */
+/* ---------- Navbar ---------- */
 .navbar {
   display: flex;
   align-items: center;
@@ -18,7 +16,6 @@
   border-bottom: 1px solid #eaeaea;
 }
 
-/* Logo Section */
 .nav-logo {
   width: 50px;
   height: 50px;
@@ -27,13 +24,9 @@
 .logo {
   width: 100%;
   height: 100%;
-  background-image: url('../images/logo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: url('../images/logo.png') no-repeat center center/contain;
 }
 
-/* Navigation links */
 .nav-links {
   flex: 1;
   display: flex;
@@ -50,15 +43,11 @@
   letter-spacing: 0.2px;
 }
 
-.nav-links a.active {
-  border-bottom: 1px solid #000;
-}
-
+.nav-links a.active,
 .nav-links a:hover {
   border-bottom: 1px solid #000;
 }
 
-/* Icons section */
 .nav-icons {
   display: flex;
   align-items: center;
@@ -71,11 +60,7 @@
   cursor: pointer;
 }
 
-/* Header done */
-
-
-/* bg img */
-
+/* ---------- Hero Section ---------- */
 .bgimg-section {
   background: url('../images/main.png') no-repeat center center/cover;
   height: 400px;
@@ -86,33 +71,199 @@
   font-family: 'Poppins', sans-serif;
 }
 
-bgimg .overlay {
+.bgimg-section .overlay {
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 60px 80px;
+  padding: 40px 60px;
   border-radius: 12px;
   text-align: center;
 }
 
-bgimg h1 {
-  font-size: 48px;
-  margin-bottom: 15px;
+.bgimg-section h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
 }
 
-bgimg p {
+.bgimg-section p {
   font-size: 18px;
   color: #ddd;
 }
 
+/* ---------- Main Content ---------- */
+.book-sale {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  width: 100%;
+  min-height: 100vh; /* Allows scroll when content grows */
+}
 
+.section-title {
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #333;
+  text-align: center;
+}
 
+/* ---------- BOOK GRID — RESPONSIVE & SCROLLABLE ---------- */
+#bookGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  justify-items: center;
+  width: 100%;
+  max-width: 1500px;
+  padding: 0 10px;
+}
 
-/* Footer section */
+.book-card {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
 
+/* Stagger animation for new cards */
+.book-card:nth-child(n+11) {
+  animation-delay: calc(0.05s * (var(--i, 0)));
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.sale-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgb(205, 0, 75);
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+.book-card h3 {
+  font-size: 16px;
+  color: #333;
+  margin: 8px 0;
+}
+
+.price {
+  font-size: 15px;
+  margin: 5px 0 15px 0;
+}
+
+.old {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 5px;
+}
+
+/* Add to Cart Button */
+.cart-btn {
+  border-radius: 4px;
+  border: 1px solid rgb(205, 0, 75);
+  background-color: #fff;
+  color: rgb(205, 0, 75);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px;
+  transition: 0.2s ease;
+  width: 100%;
+  margin-top: auto;
+}
+
+.cart-btn:hover {
+  background-color: rgb(205, 0, 75);
+  color: white;
+  box-shadow: 0 0 8px rgba(205, 0, 75, 0.6);
+}
+
+/* View All Button */
+.view-all {
+  margin-top: 40px;
+  text-align: center;
+}
+
+#viewAllBtn {
+  background-color: rgb(205, 0, 75);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#viewAllBtn:hover {
+  background-color: #a8004e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(205, 0, 75, 0.4);
+}
+
+/* ---------- RESPONSIVE GRID ---------- */
+@media (max-width: 1400px) {
+  #bookGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  #bookGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  #bookGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  #bookGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-card {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+/* ---------- Footer ---------- */
 .footer {
   background-color: #1e222b;
   color: #fff;
   padding: 50px 80px 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 60px;
 }
 
 .footer-container {
@@ -136,7 +287,6 @@ bgimg p {
 
 .footer-section ul {
   list-style: none;
-  padding: 0;
 }
 
 .footer-section ul li {
@@ -175,7 +325,6 @@ bgimg p {
   width: 60px;
   background-color: #000;
   border-radius: 10px;
-  
 }
 
 .footer-bottom {
@@ -192,15 +341,19 @@ bgimg p {
   filter: brightness(0) invert(1);
 }
 
+/* ---------- Mobile Fixes ---------- */
 @media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .book-sale {
+    padding: 40px 15px;
+  }
+
   .footer-container {
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
-
-  .footer-section {
-    margin: 15px 0;
-  }
 }
-
-/* Footer Section done */

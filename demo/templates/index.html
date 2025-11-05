@@ -1,24 +1,25 @@
-{%load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Family BookStore</title>
-  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <div class="navbar">
 
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
       <!-- Logo -->
       <div class="nav-logo">
         <div class="logo"></div>
       </div>
 
       <!-- Navigation Links -->
-      <div class="nav-links" >
+      <div class="nav-links">
         <a href="#" class="active" id="homeLink">Home</a>
         <a href="#">Product Categories</a>
         <a href="#">Bulk Purchase</a>
@@ -34,63 +35,117 @@
         <i class="fa fa-search"></i>
         <i class="fa fa-bag-shopping"></i>
       </div>
-    </div>
+    </nav>
   </header>
 
+  <!-- Hero Section -->
+  <section class="bgimg-section">
+    <div class="overlay">
+      <h1>Welcome to Family BookStore</h1>
+      <p>Discover amazing deals on your favorite reads</p>
+    </div>
+  </section>
 
+  <!-- Main Content -->
+  <main class="book-sale">
+  <h2 class="section-title">SELF-HELP ON SALE</h2>
 
-    <div class="bgimg-section"></div>
+  <!-- Book Grid - Will grow on "View all" -->
+  <div class="book-grid" id="bookGrid">
+    <!-- Card 1 -->
+    <div class="book-card">
+      <img src="https://99bookstores.com/cdn/shop/files/1_b7fbebdd-738a-4a87-9b5e-72746619c9f8.png?v=1760611903" alt="Special 99 Box">
+      <span class="sale-tag">Sale</span>
+      <h3>Special 99 Box (16 Books Combo)</h3>
+      <p class="price"><span class="old">Rs. 7,999.00</span> Rs. 1,599.00</p>
+      <button class="cart-btn">Add to cart</button>
+    </div>
 
+    <!-- Card 2 -->
+    <div class="book-card">
+      <img src="{% static 'Books/bookcombo2.jpg' %}" alt="Winter Special Combo">
+      <span class="sale-tag">Sale</span>
+      <h3>Winter Special 8 Books Combo</h3>
+      <p class="price"><span class="old">Rs. 4,999.00</span> Rs. 1,249.00</p>
+      <button class="cart-btn">Add to cart</button>
+    </div>
 
+    <!-- Card 3 -->
+    <div class="book-card">
+      <img src="{% static 'Books/ikigai.jpg' %}" alt="Ikigai">
+      <span class="sale-tag">Sale</span>
+      <h3>Ikigai Paperback</h3>
+      <p class="price"><span class="old">Rs. 599.00</span> Rs. 99.00</p>
+      <button class="cart-btn">Add to cart</button>
+    </div>
 
-  
+    <!-- Card 4 -->
+    <div class="book-card">
+      <img src="{% static 'Books/artoflaziness.jpg' %}" alt="The Art of Laziness">
+      <span class="sale-tag">Sale</span>
+      <h3>The Art of Laziness</h3>
+      <p class="price"><span class="old">Rs. 799.00</span> Rs. 99.00</p>
+      <button class="cart-btn">Add to cart</button>
+    </div>
+
+    {% for i in "123456" %}
+    <div class="book-card">
+      <img src="{% static 'Books/doittoday.jpg' %}" alt="Do It Today">
+      <span class="sale-tag">Sale</span>
+      <h3>Do It Today</h3>
+      <p class="price"><span class="old">Rs. 599.00</span> Rs. 99.00</p>
+      <button class="cart-btn">Add to cart</button>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- View All Button -->
+  <div class="view-all">
+    <button class="view-btn" id="viewAllBtn">Load More</button>
+  </div>
+ </main>
+
+  <!-- Footer -->
   <footer class="footer">
-  <div class="footer-container">
-    <!-- Social Media -->
-    <div class="footer-section">
-      <h3>Follow us on our Social Media</h3>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+    <div class="footer-container">
+      <!-- Social Media -->
+      <div class="footer-section">
+        <h3>Follow us on Social Media</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Bulk Purchase</a></li>
+          <li><a href="#">Return & Replacement</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- About -->
+      <div class="footer-section about">
+        <h3>About the Shop</h3>
+        <p>We’re a family-run bookstore offering the best deals on your favorite titles and curated book combos.</p>
+        <img src="/Logo/logo.png" alt="Family BookStore Logo" class="footer-logo">
       </div>
     </div>
 
-    <!-- Quick Links -->
-    <div class="footer-section">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Bulk Purchase</a></li>
-        <li><a href="#">Return & Replacement</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <p>© 2025, Family Book Store</p>
+      <div class="payment-icons">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
+      </div>
     </div>
-
-    <!-- About the Shop -->
-    <div class="footer-section about">
-      <h3>About the shop</h3>
-      <p>
-        sample
-      </p>
-      <img src="logo.png" alt="" class="footer-logo">
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2025, Family Book Store </p>
-    <div class="payment-icons">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
-    </div>
-  </div>
   </footer>
 
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-<script src="{% static 'js/script.js' %}"></script>
-
-
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

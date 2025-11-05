@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=(l!(l^0a%k!jxm*7p2)d%#$n$cr%@wxsqtwa#zi9&^e+j*^ko
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
 EXTERNAL_APPS = [
     
-    'product_categories'
+    'product_categories',
    
 ]
 
