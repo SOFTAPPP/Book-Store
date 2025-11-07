@@ -1,9 +1,9 @@
-from django.db import models as mod
+from django.db import models
 from django.utils import timezone
 
-class product_variety(mod.Model):
-    PRODUCT_TYPE_CHOICE = [
-        ('LAFK','Learning Apps For Kids'),
+class ProductVariety(models.Model):
+    PRODUCT_TYPE_CHOICES = [
+        ('LAFK', 'Learning Apps For Kids'),
         ('PF', 'Popular Fictions'),
         ('AAL', 'All About Love'),
         ('MG', 'Manga Club'),
@@ -15,12 +15,15 @@ class product_variety(mod.Model):
         ('MT', 'Mythology & Tails')
     ]
     
-    name = mod.CharField(max_length=100)
-    image = mod.ImageField(upload_to='product_categories/')
-    date_added = mod.DateTimeField(default=timezone.now)
-    type = mod.CharField(max_length=4,choices=PRODUCT_TYPE_CHOICE)
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='product_categories/')
+    date_added = models.DateTimeField(default=timezone.now)
+    type = models.CharField(max_length=4, choices=PRODUCT_TYPE_CHOICES)
+    
+    class Meta:
+        ordering = ['name']  # Alphabetical order
+        verbose_name = "Product Variety"
+        verbose_name_plural = "Product Varieties"
     
     def __str__(self):
         return self.name
-    
-

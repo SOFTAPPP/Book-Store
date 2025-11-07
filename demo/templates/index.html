@@ -48,62 +48,37 @@
 
   <!-- Main Content -->
   <main class="book-sale">
-  <h2 class="section-title">SELF-HELP ON SALE</h2>
-
-  <!-- Book Grid - Will grow on "View all" -->
-  <div class="book-grid" id="bookGrid">
-    <!-- Card 1 -->
-    <div class="book-card">
-      <img src="https://99bookstores.com/cdn/shop/files/1_b7fbebdd-738a-4a87-9b5e-72746619c9f8.png?v=1760611903" alt="Special 99 Box">
-      <span class="sale-tag">Sale</span>
-      <h3>Special 99 Box (16 Books Combo)</h3>
-      <p class="price"><span class="old">Rs. 7,999.00</span> Rs. 1,599.00</p>
-      <button class="cart-btn">Add to cart</button>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="book-card">
-      <img src="{% static 'Books/bookcombo2.jpg' %}" alt="Winter Special Combo">
-      <span class="sale-tag">Sale</span>
-      <h3>Winter Special 8 Books Combo</h3>
-      <p class="price"><span class="old">Rs. 4,999.00</span> Rs. 1,249.00</p>
-      <button class="cart-btn">Add to cart</button>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="book-card">
-      <img src="{% static 'Books/ikigai.jpg' %}" alt="Ikigai">
-      <span class="sale-tag">Sale</span>
-      <h3>Ikigai Paperback</h3>
-      <p class="price"><span class="old">Rs. 599.00</span> Rs. 99.00</p>
-      <button class="cart-btn">Add to cart</button>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="book-card">
-      <img src="{% static 'Books/artoflaziness.jpg' %}" alt="The Art of Laziness">
-      <span class="sale-tag">Sale</span>
-      <h3>The Art of Laziness</h3>
-      <p class="price"><span class="old">Rs. 799.00</span> Rs. 99.00</p>
-      <button class="cart-btn">Add to cart</button>
-    </div>
-
-    {% for i in "123456" %}
-    <div class="book-card">
-      <img src="{% static 'Books/doittoday.jpg' %}" alt="Do It Today">
-      <span class="sale-tag">Sale</span>
-      <h3>Do It Today</h3>
-      <p class="price"><span class="old">Rs. 599.00</span> Rs. 99.00</p>
-      <button class="cart-btn">Add to cart</button>
-    </div>
-    {% endfor %}
-  </div>
-
-  <!-- View All Button -->
-  <div class="view-all">
-    <button class="view-btn" id="viewAllBtn">Load More</button>
-  </div>
- </main>
+      <h2 class="section-title">SELF-HELP ON SALE</h2>
+    
+      <!-- Book Grid -->
+      <div class="book-grid" id="bookGrid">
+          {% for book in books %}
+          <div class="book-card">
+              <img src="{{ book.image.url }}" alt="{{ book.title }}">
+              {% if book.is_on_sale %}
+              <span class="sale-tag">Sale</span>
+              {% endif %}
+              <h3>{{ book.title }}</h3>
+              <p class="price">
+                {% if book.has_discount %}
+                <span class="old">Rs. {{ book.original_price }}</span> 
+                {% endif %}
+                Rs. {% if book.has_discount %}{{ book.sale_price }}{% else %}{{ book.original_price }}{% endif %}
+              </p>
+              <button class="cart-btn">Add to cart</button>
+          </div>
+          {% empty %}
+          <p style="grid-column: 1/-1; text-align: center;">No books available yet. Server under maintainance</p>
+          {% endfor %}
+      </div>
+    
+      <!-- View All Button -->
+      {% if show_load_more %}
+      <div class="view-all">
+        <button class="view-btn" id="viewAllBtn">Load More</button>
+      </div>
+      {% endif %}
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
